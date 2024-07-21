@@ -5,9 +5,7 @@
 {% block content %}
 <h2>Validar {{ tipo.upper() }}</h2>
 <form method="POST">
-    <div id="aviso">
-        {{ form.hidden_tag() }}
-    </div>
+    {{ form.hidden_tag() }}
     {{ form.documento.label }}<br>
     {{ form.documento(size=30) }}
     <p>{{ form.submit() }}</p>
