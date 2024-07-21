@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>Gerar e validar CNPJ e CPF</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home2') }}">Home</a></li>
+                    <li><a href="{{ url_for('gerar', tipo='cpf') }}">Gerar CPF</a></li>
+                    <li><a href="{{ url_for('gerar', tipo='cnpj') }}">Gerar CNPJ</a></li>
+                    <li><a href="{{ url_for('validar', tipo='cpf') }}">Validar CPF</a></li>
+                    <li><a href="{{ url_for('validar', tipo='cnpj') }}">Validar CNPJ</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>
